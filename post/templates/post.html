@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block content %}
+        <!-- Page Header-->
+        {% for post in allPost %}
+            {% if post.slug == slug %}
+            <header class="masthead" style="background-image: url('/static/assets/bg/{{post.banner}}.jpg')">
+                <div class="container position-relative px-4 px-lg-5">
+                    <div class="row gx-4 gx-lg-5 justify-content-center">
+                        <div class="col-md-10 col-lg-8 col-xl-7">
+                            <div class="post-heading">
+                                        <h1>{{post.title}}</h1>
+                                        <span class="meta">
+                                            Posted by
+                                            <a href="{{post.slug}}">{{post.author}}</a>
+                                            on {{post.pub_date}}
+                                        </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </header>
+                {% endif %}
+            {% endfor %}
+        <!-- Post Content-->
+        <article class="mb-4">
+            <div class="container px-4 px-lg-5">
+                <div class="row gx-4 gx-lg-5 justify-content-center">
+                    <div class="col-md-10 col-lg-8 col-xl-7">
+                    {% for post in allPost %}
+                        {% if post.slug == slug %}
+                            {{ post.content|safe}}
+                        {% endif %}
+                    {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </article>
+{% endblock %}
